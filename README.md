@@ -11,22 +11,51 @@ Custom [OpenClaw](https://openclaw.ai) skills for Atlas AI assistant.
 | [meta-ads-api](./meta-ads-api/) | Meta (Facebook) Ads API integration |
 | [ga4-analytics-toolkit](./ga4-analytics-toolkit/) | Google Analytics 4 + Search Console integration |
 
-## 📦 Installation
+## 🔄 Auto-Sync Setup
 
-Skills are installed globally to the OpenClaw skills directory:
+This repo is the **source of truth** for all skills. Changes sync automatically to GitHub.
+
+### How It Works
+
+1. Skills live in both places:
+   - **Local:** `%APPDATA%\npm\node_modules\openclaw\skills\`
+   - **GitHub:** `C:\Users\larry\atlas-skills\`
+
+2. When installing new skills, I now:
+   - Install to local OpenClaw directory
+   - Copy to `atlas-skills` repo
+   - Auto-commit and push to GitHub
+
+### Manual Sync
+
+To sync any changes manually:
+
+```powershell
+.\sync-skills.ps1
+```
+
+To add a custom commit message:
+
+```powershell
+.\sync-skills.ps1 -Message "Added new Facebook Ads workflow"
+```
+
+## 📂 Repo Structure
 
 ```
-%APPDATA%\npm\node_modules\openclaw\skills\
+atlas-skills/
+├── git-helper/              # Git operations wrapper
+├── n8n-automation/          # n8n workflow design
+│   └── assets/
+│       └── runbook-template.md
+├── meta-ads-api/            # Meta/Facebook Ads API
+├── ga4-analytics-toolkit/   # GA4 + Search Console
+│   └── references/
+│       └── api-reference.md
+├── Buckalew-CRM-Automation/ # CRM workflow backups
+├── sync-skills.ps1          # Auto-sync script
+└── README.md
 ```
-
-To manually install a skill, copy the skill folder to the above directory.
-
-## 🔄 Syncing
-
-This repo is the source of truth. When installing new skills:
-1. Add to this repo
-2. Push to GitHub
-3. Copy to local skills directory
 
 ## 🤝 Contributing
 
